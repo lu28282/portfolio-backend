@@ -19,7 +19,9 @@ public class Portfolio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @OneToMany
-    @JoinColumn(name="id", nullable = true)
+    @JoinColumn(name="assetId", nullable = true)
     private Set<Asset> asset;
 }

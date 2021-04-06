@@ -24,6 +24,6 @@ public class User {
     private String password;
 
     @OneToMany
-    @JoinColumn(name="id", nullable = true)
+    @JoinColumn(name="portfolioId", nullable = true)
     private Set<Portfolio> portfolio;
 }

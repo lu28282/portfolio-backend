@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PortfolioRepository extends CrudRepository<Portfolio, Long> {
     
     Portfolio findPortfolioById(long id);
+
+    Portfolio findPortfolioByName(String name);
 }
