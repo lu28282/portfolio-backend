@@ -6,7 +6,7 @@ import com.portfolio.dto.AssetDTO;
 
 public interface assetService {
     
-    public List<AssetDTO> getAllAssets();
+    public List<AssetDTO> getAllAssets(int portfolioID);
 
     public AssetDTO getAsset(int assetID);
 
