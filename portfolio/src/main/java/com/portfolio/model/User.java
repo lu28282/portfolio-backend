@@ -1,4 +1,4 @@
-package com.portfolio.entities;
+package com.portfolio.model;
 
 import java.util.Set;
 
@@ -14,15 +14,17 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Portfolio {
+public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String username;
+
+    private String password;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="portfolio_id", nullable = true)
-    private Set<Asset> asset;
+    @JoinColumn(name="user_id", nullable = true)
+    private Set<Portfolio> portfolio;
 }

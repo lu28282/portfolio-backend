@@ -3,11 +3,11 @@ package com.portfolio.config.initialisation;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.portfolio.entities.Asset;
-import com.portfolio.entities.Crypto;
-import com.portfolio.entities.Portfolio;
-import com.portfolio.entities.Stock;
-import com.portfolio.entities.User;
+import com.portfolio.model.Asset;
+import com.portfolio.model.Crypto;
+import com.portfolio.model.Portfolio;
+import com.portfolio.model.Stock;
+import com.portfolio.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

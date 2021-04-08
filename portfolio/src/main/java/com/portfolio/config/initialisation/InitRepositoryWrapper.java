@@ -4,16 +4,16 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import com.portfolio.entities.Asset;
-import com.portfolio.entities.Crypto;
-import com.portfolio.entities.Portfolio;
-import com.portfolio.entities.Stock;
-import com.portfolio.entities.User;
-import com.portfolio.repositories.AssetRepository;
-import com.portfolio.repositories.CryptoRepository;
-import com.portfolio.repositories.PortfolioRepository;
-import com.portfolio.repositories.StockRepository;
-import com.portfolio.repositories.UserRepository;
+import com.portfolio.dao.AssetRepository;
+import com.portfolio.dao.CryptoRepository;
+import com.portfolio.dao.PortfolioRepository;
+import com.portfolio.dao.StockRepository;
+import com.portfolio.dao.UserRepository;
+import com.portfolio.model.Asset;
+import com.portfolio.model.Crypto;
+import com.portfolio.model.Portfolio;
+import com.portfolio.model.Stock;
+import com.portfolio.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

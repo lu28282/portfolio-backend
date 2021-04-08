@@ -1,4 +1,4 @@
-package com.portfolio.entities;
+package com.portfolio.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.portfolio.entities;
+package com.portfolio.model;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;

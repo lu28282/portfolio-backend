@@ -1,6 +1,6 @@
-package com.portfolio.repositories;
+package com.portfolio.dao;
 
-import com.portfolio.entities.Stock;
+import com.portfolio.model.Stock;
 
 import org.springframework.data.repository.CrudRepository;
 
