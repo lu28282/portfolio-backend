@@ -2,6 +2,7 @@ package com.portfolio.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Portfolio {
 
     private String name;
 
-    @OneToMany
-    @JoinColumn(name="assetId", nullable = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="portfolio_id", nullable = true)
     private Set<Asset> asset;
 }

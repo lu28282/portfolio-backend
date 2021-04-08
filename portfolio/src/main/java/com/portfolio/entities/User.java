@@ -2,6 +2,7 @@ package com.portfolio.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class User {
 
     private String password;
 
-    @OneToMany
-    @JoinColumn(name="portfolioId", nullable = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="user_id", nullable = true)
     private Set<Portfolio> portfolio;
 }

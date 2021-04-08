@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "asset_type", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "asset_type_id", columnDefinition = "TINYINT(1)", discriminatorType = DiscriminatorType.INTEGER)
 public class Asset {
     
     @Id
