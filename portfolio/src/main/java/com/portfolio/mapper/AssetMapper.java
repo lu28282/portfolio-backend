@@ -1,44 +1,80 @@
 package com.portfolio.mapper;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.portfolio.dto.AssetDTO;
+import com.portfolio.enumeration.AssetType;
+import com.portfolio.model.Asset;
 import com.portfolio.model.Crypto;
 import com.portfolio.model.Stock;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface AssetMapper {
-    @Mappings({
-        @Mapping(target="id", source="entity.id"),
-        @Mapping(target="name", source="entity.name"),
-        @Mapping(target="amount", source="entity.amount"),
-        @Mapping(target="isin", source="entity.isin"),
-      })
-      AssetDTO stockToAssetDTO(Stock entity);
+@Component
+public class AssetMapper {
     
-      @Mappings({
-        @Mapping(target="id", source="entity.id"),
-        @Mapping(target="name", source="entity.name"),
-        @Mapping(target="amount", source="entity.amount"),
-        @Mapping(target="abbreviation", source="entity.abbreviation"),
-      })
-      AssetDTO cryptoToAssetDTO(Crypto entity);
-      
-      @Mappings({
-        @Mapping(target="id", source="entity.id"),
-        @Mapping(target="name", source="entity.name"),
-        @Mapping(target="amount", source="entity.amount"),
-        @Mapping(target="isin", source="entity.isin"),
-      })
-      Stock stockDTOtoStock(AssetDTO dto);
-      
-      @Mappings({
-        @Mapping(target="id", source="entity.id"),
-        @Mapping(target="name", source="entity.name"),
-        @Mapping(target="amount", source="entity.amount"),
-        @Mapping(target="abbreviation", source="entity.abbreviation"),
-      })
-      Crypto cryptoDTOtoStock(AssetDTO dto);
+    public AssetDTO cryptoToAssetDTO(Crypto entity) {
+        AssetDTO assetDTO = new AssetDTO();
+        assetDTO.setId(entity.getId());
+        assetDTO.setName(entity.getName());
+        assetDTO.setAssetType(AssetType.CRYPTO);
+        assetDTO.setAbbreviation(entity.getAbbreviation());
+        assetDTO.setAmount(entity.getAmount());
+
+        return assetDTO;
+    }
+
+    public AssetDTO stockToAssetDTO(Stock entity) {
+        AssetDTO assetDTO = new AssetDTO();
+        assetDTO.setId(entity.getId());
+        assetDTO.setName(entity.getName());
+        assetDTO.setAssetType(AssetType.STOCK);
+        assetDTO.setAmount(entity.getAmount());
+        assetDTO.setIsin(entity.getIsin());
+
+        return assetDTO;
+    }
+
+    public Crypto AssetDTOToCrypto(AssetDTO dto) {
+        Crypto crypto = new Crypto();
+        crypto.setId(dto.getId());
+        crypto.setName(dto.getName());
+        crypto.setAmount(dto.getAmount());
+        crypto.setAbbreviation(dto.getAbbreviation());
+
+        return crypto;
+    }
+
+    public Stock AssetDTOToStock(AssetDTO dto) {
+        Stock stock = new Stock();
+        stock.setId(dto.getId());
+        stock.setName(dto.getName());
+        stock.setAmount(dto.getAmount());
+        stock.setIsin(dto.getIsin());
+
+        return stock;
+    }
+
+    public Set<Asset> assetDTOsToAssets(Set<AssetDTO> assetDTOs) {
+        Set<Asset> assets = new HashSet<Asset>();
+        for(AssetDTO assetDTO : assetDTOs) {
+            if(assetDTO.getAssetType() == AssetType.CRYPTO) {
+                assets.add(this.AssetDTOToCrypto(assetDTO));
+            } else if (assetDTO.getAssetType() == AssetType.STOCK) {
+                assets.add(this.AssetDTOToStock(assetDTO));
+            }
+        }
+        return assets;
+    }
+
+    // public Set<AssetDTO> assetToAssetDTO(Set<Asset> assets) {
+    //     Set<AssetDTO> assetDTOs = new HashSet<AssetDTO>();
+    //     for(Asset asset : assets) {
+    //         // TODO: ENUM numerieren according to numbers in database
+    //         if(asset.getAsset_type_id() == AssetType.CRYPTO) {
+    //             assets.add(this.cryptoToAssetDTO((Crypto) asset));
+    //         }
+    //     }
+    // }
 }

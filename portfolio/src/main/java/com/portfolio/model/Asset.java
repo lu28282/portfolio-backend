@@ -24,4 +24,6 @@ public class Asset {
     private String name;
 
     private double amount;
+
+    private int asset_type_id;
 }

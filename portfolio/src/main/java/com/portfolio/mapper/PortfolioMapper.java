@@ -1,25 +1,39 @@
 package com.portfolio.mapper;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.portfolio.dto.AssetDTO;
 import com.portfolio.dto.PortfolioDTO;
+import com.portfolio.enumeration.AssetType;
+import com.portfolio.model.Asset;
 import com.portfolio.model.Portfolio;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface PortfolioMapper {
-    @Mappings({
-        @Mapping(target="id", source="entity.id"),
-        @Mapping(target="name", source="entity.name"),
-        @Mapping(target="asset", source="entity.asset")
-      })
-      PortfolioDTO portfolioToPortfolioDTO(Portfolio entity);
-      
-      @Mappings({
-        @Mapping(target="id", source="dto.id"),
-        @Mapping(target="name", source="dto.name"),
-        @Mapping(target="asset", source="dto.asset")
-      })
-      Portfolio portfolioDTOtoPortfolio(PortfolioDTO dto);
+@Component
+public class PortfolioMapper {
+    
+    @Autowired
+    AssetMapper assetMapper;
+
+    public Portfolio portfolioDTOToPortfolio(PortfolioDTO dto) {
+        Portfolio portfolio = new Portfolio();
+        portfolio.setId(dto.getId());
+        portfolio.setName(dto.getName());
+        portfolio.setAsset(assetMapper.assetDTOsToAssets(dto.getAsset()));
+
+        return portfolio;
+    }
+
+    public PortfolioDTO portfolioToPortfolioDTO(Portfolio entity) {
+        PortfolioDTO portfolioDTO = new PortfolioDTO();
+        portfolioDTO.setId(entity.getId());
+        portfolioDTO.setName(entity.getName());
+        // portfolioDTO.setAsset(assetMapper.);
+        return portfolioDTO;
+    }
+
+    
 }

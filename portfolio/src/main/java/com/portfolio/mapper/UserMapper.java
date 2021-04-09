@@ -3,25 +3,18 @@ package com.portfolio.mapper;
 import com.portfolio.dto.UserDTO;
 import com.portfolio.model.User;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface UserMapper {
-    @Mappings({
-        @Mapping(target="id", source="entity.id"),
-        @Mapping(target="username", source="entity.username"),
-        @Mapping(target="password", source="entity.password"),
-        @Mapping(target="portfolio", source="entity.portfolio")
-      })
-      UserDTO userToUserDTO(User entity);
-      
-      @Mappings({
-        @Mapping(target="id", source="dto.id"),
-        @Mapping(target="username", source="dto.username"),
-        @Mapping(target="password", source="dto.password"),
-        @Mapping(target="portfolio", source="dto.portfolio")
-      })
-      User userDTOtoUser(UserDTO dto);
+@Component
+public class UserMapper {
+    
+    public UserDTO userToUserDTO(User entity) {
+        UserDTO userDto = new UserDTO();
+        userDto.setId(entity.getId());
+        userDto.setUsername(entity.getUsername());
+        userDto.setPassword(entity.getUsername());
+        // userDto.setPortfolio(entity.getPortfolio());
+
+        return userDto;
+    }
 }
