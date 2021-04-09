@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AssetMapper {
-    
+
     public AssetDTO cryptoToAssetDTO(Crypto entity) {
         AssetDTO assetDTO = new AssetDTO();
         assetDTO.setId(entity.getId());
@@ -58,8 +58,8 @@ public class AssetMapper {
 
     public Set<Asset> assetDTOsToAssets(Set<AssetDTO> assetDTOs) {
         Set<Asset> assets = new HashSet<Asset>();
-        for(AssetDTO assetDTO : assetDTOs) {
-            if(assetDTO.getAssetType() == AssetType.CRYPTO) {
+        for (AssetDTO assetDTO : assetDTOs) {
+            if (assetDTO.getAssetType() == AssetType.CRYPTO) {
                 assets.add(this.AssetDTOToCrypto(assetDTO));
             } else if (assetDTO.getAssetType() == AssetType.STOCK) {
                 assets.add(this.AssetDTOToStock(assetDTO));
@@ -68,13 +68,15 @@ public class AssetMapper {
         return assets;
     }
 
-    // public Set<AssetDTO> assetToAssetDTO(Set<Asset> assets) {
-    //     Set<AssetDTO> assetDTOs = new HashSet<AssetDTO>();
-    //     for(Asset asset : assets) {
-    //         // TODO: ENUM numerieren according to numbers in database
-    //         if(asset.getAsset_type_id() == AssetType.CRYPTO) {
-    //             assets.add(this.cryptoToAssetDTO((Crypto) asset));
-    //         }
-    //     }
-    // }
+    public Set<AssetDTO> assetsToAssetDTOs(Set<Asset> assets) {
+        Set<AssetDTO> assetDTOs = new HashSet<AssetDTO>();
+        for (Asset asset : assets) {
+            if (asset.getAssetType() == AssetType.CRYPTO.getValue()) {
+                assetDTOs.add(cryptoToAssetDTO((Crypto) asset));
+            } else if (asset.getAssetType() == AssetType.STOCK.getValue()) {
+                assetDTOs.add(stockToAssetDTO((Stock) asset));
+            }
+        }
+        return assetDTOs;
+    }
 }

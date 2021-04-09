@@ -1,14 +1,14 @@
 package com.portfolio.service.interfaces;
 
-import java.util.List;
-
-import com.portfolio.dto.UserDTO;
+import com.portfolio.model.User;
 
 public interface userService {
     
-    public List<UserDTO> getAllUsers();
+    public Iterable<User> getAllUsers();
 
-    public UserDTO getUser(int id);
+    public User getUser(long userId);
 
-    public UserDTO removeUser(int id);
+    public void removeUser(long userId);
+
+    public void save(User user);
 }

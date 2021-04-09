@@ -1,14 +1,14 @@
 package com.portfolio.service.interfaces;
 
-import java.util.List;
-
-import com.portfolio.dto.PortfolioDTO;
+import com.portfolio.model.Portfolio;
 
 public interface portfolioService {
     
-    public List<PortfolioDTO> getAllPortfolios(int userID);
+    public Iterable<Portfolio> getAllPortfolios();
 
-    public PortfolioDTO getPortfolio(int portfolioID);
+    public Portfolio getPortfolio(long portfolioId);
 
-    public PortfolioDTO removePortfolio(int portfolioID);
+    public void removePortfolio(long portfolioId);
+
+    public void save(Portfolio portfolio);
 }

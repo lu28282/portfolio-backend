@@ -1,14 +1,15 @@
 package com.portfolio.service.interfaces;
 
-import java.util.List;
 
-import com.portfolio.dto.AssetDTO;
+import com.portfolio.model.Asset;
 
 public interface assetService {
     
-    public List<AssetDTO> getAllAssets(int portfolioID);
+    public Iterable<Asset> getAllAssets();
 
-    public AssetDTO getAsset(int assetID);
+    public Asset getAsset(long assetId);
 
-    public AssetDTO removeAsset(int assetID);
+    public void removeAsset(long assetId);
+
+    public void save(Asset asset);
 }

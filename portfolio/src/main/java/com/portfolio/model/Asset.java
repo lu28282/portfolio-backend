@@ -1,5 +1,6 @@
 package com.portfolio.model;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -25,6 +26,6 @@ public class Asset {
 
     private double amount;
 
-    // TODO: Look up how to map discriminator column to this entity?
-    private int asset_type_id;
+    @Column(name="asset_type_id", insertable = false, updatable = false)
+    private int assetType;
 }

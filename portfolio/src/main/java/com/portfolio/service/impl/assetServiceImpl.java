@@ -1,29 +1,35 @@
 package com.portfolio.service.impl;
 
-import java.util.List;
-
-import com.portfolio.dto.AssetDTO;
+import com.portfolio.dao.AssetRepository;
+import com.portfolio.model.Asset;
 import com.portfolio.service.interfaces.assetService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class assetServiceImpl implements assetService {
 
+    @Autowired
+    AssetRepository assetRepository;
 
     @Override
-    public AssetDTO getAsset(int assetID) {
-        // TODO Auto-generated method stub
-        return null;
+    public Iterable<Asset> getAllAssets() {
+        return assetRepository.findAll();
     }
 
     @Override
-    public AssetDTO removeAsset(int assetID) {
-        // TODO Auto-generated method stub
-        return null;
+    public Asset getAsset(long assetID) {
+        return assetRepository.findAssetById(assetID);
     }
 
     @Override
-    public List<AssetDTO> getAllAssets(int portfolioID) {
-        // TODO Auto-generated method stub
-        return null;
+    public void removeAsset(long assetID) {
+        assetRepository.deleteById(assetID);
     }
-    
+
+    @Override
+    public void save(Asset asset) {
+        assetRepository.save(asset);
+    }
 }
