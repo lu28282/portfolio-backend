@@ -25,5 +25,6 @@ public class Asset {
 
     private double amount;
 
+    // TODO: Look up how to map discriminator column to this entity?
     private int asset_type_id;
 }
